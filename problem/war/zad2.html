@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<title>Insert title here</title>
+</head>
+
+<style>
+.znach {
+	width: 360px;
+	height: 270px;
+	margin: auto;
+}
+
+.result {
+	color: red;
+	font-weight: 400;
+	width: 100%;
+	float: left;
+	height: 300px;
+	overflow: auto;
+	text-align: center;
+}
+
+#result_table {
+	width: 100%;
+	height: 400px;
+	margin-top: 0px;
+}
+</style>
+
+<script src="jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#btn1').click(
+				function() {
+					var one = $('#first').val();
+					var two = $('#second').val();
+					$('#result_table').load(
+							"/Zadanie2Servlet?first=" + one + "&second=" + two
+									+ "&flag=1");
+				});
+		$('#btn2').click(
+				function() {
+					var one = $('#first').val();
+					var two = $('#second').val();
+					$('#result_table').load(
+							"/Zadanie2Servlet?first=" + one + "&second=" + two
+									+ "&flag=2");
+				});
+	});
+</script>
+<body>
+	<div class="znach" align="center">
+		<table>
+			<tr>
+				<td width="300px" style="padding: 7px;">Начальное значение:</td>
+				<td width="100px" align="center"><input type="text" id="first"
+					size="3" /></td>
+			<tr>
+				<td width="300px" style="padding: 7px;">Конечное значение:</td>
+				<td width="100px" align="center"><input type="text" id="second"
+					size="3" /></td>
+			</tr>
+			<tr>
+				<td width="200px" align="left"><button id="btn1" class="btns">Просто
+						символы</button></td>
+				<td width="200px" align="left"><button id="btn2" class="btns">Символы
+						с кодами</button></td>
+			</tr>
+
+			<tr>
+				<td colspan="2" align="center"><a href="index.html"
+					class="knopka" style="width: 40%">к заданиям</a></td>
+			</tr>
+		</table>
+	</div>
+	<div class="result">
+		<div id="result_table"></div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/Style.css">
+<title>Info windows</title>
+<style>
+#map-canvas {
+	height: 85%;
+	width: 95%;
+	margin: auto;
+	border: dotted;
+	padding: 10px;
+
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+
+	function initialize() {
+		var myLatlng = new google.maps.LatLng(59.964704, 30.405952);
+		var myLatlng2 = new google.maps.LatLng(60.404255, 30.378764);
+		var mapOptions = {
+			zoom : 7,
+			center : myLatlng
+		};
+
+		map = new google.maps.Map(document.getElementById('map-canvas'),
+				mapOptions);
+
+		var contentString = '<div id="content">'
+				+ '<div id="siteNotice">'
+				+ '</div>'
+				+ '<h1 id="firstHeading" class="firstHeading">Домик Вована</h1>'
+				+ '<div id="bodyContent">'
+				+ '<p>Живу я тут с самого рождения</p>' + '</div>' + '</div>';
+
+		var contentString2 = 'Дачка Вована';
+
+		var infowindow = new google.maps.InfoWindow({
+			content : contentString
+		});
+
+		var marker = new google.maps.Marker({
+			position : myLatlng,
+			map : map,
+			title : 'Дом вована'
+		});
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map, marker);
+		});
+		
+		createMarker(myLatlng2, contentString2, 'Дачка Вована');
+	}
+
+	function createMarker(myLatlng, contentString, mytitle) {
+		marker = new google.maps.Marker({
+			position : myLatlng,
+			map : map,
+			title : mytitle
+		});
+
+		infowindow = new google.maps.InfoWindow({
+			content : contentString
+		});
+
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map, marker);
+		});
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+<div class="wrapper"></div>
+	<div class="main"></div>
+	<div id="map-canvas"></div>
+	<p><a href="/index.html" class="knopka">к заданиям</a></p>
+	</div>
+</body>
+</html>
